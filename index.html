@@ -229,42 +229,39 @@
     flex-shrink: 0;
   }
 
+  /* ICON WRAPPERS FOR SMOOTH GLOW */
+  .nav-icon-wrapper {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    position: relative;
+    filter: drop-shadow(0 0 8px rgba(232,26,26,.4)) drop-shadow(0 0 16px rgba(232,26,26,.2));
+    transition: transform 0.15s, filter 0.15s;
+  }
+
+  .nav-icon-wrapper:hover {
+    transform: scale(1.12);
+    filter: drop-shadow(0 0 12px rgba(232,26,26,.6)) drop-shadow(0 0 24px rgba(232,26,26,.4));
+  }
+
+  .nav-key-wrapper:hover {
+    transform: rotate(-15deg) scale(1.12);
+  }
+
   /* LOOKBOOK ICON */
   .nav-lookbook-icon {
     height: 54px;
     width: auto;
     image-rendering: pixelated;
-    cursor: pointer;
-    filter: drop-shadow(0 0 6px rgba(232,26,26,.5));
-    transition: transform 0.15s, filter 0.15s;
     display: block;
   }
 
-  .nav-lookbook-icon:hover {
-    transform: scale(1.12);
-    filter: drop-shadow(0 0 12px rgba(232,26,26,.8));
-  }
-
   /* CHEST */
-  .nav-chest {
-    position: relative;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-  }
-
   .nav-chest-img {
     height: 52px;
     width: auto;
     image-rendering: pixelated;
-    filter: drop-shadow(0 0 6px rgba(232,26,26,.5));
-    transition: transform 0.15s, filter 0.15s;
     display: block;
-  }
-
-  .nav-chest:hover .nav-chest-img {
-    transform: scale(1.12);
-    filter: drop-shadow(0 0 12px rgba(232,26,26,.8));
   }
 
   .nav-chest-count {
@@ -289,15 +286,7 @@
     height: 54px;
     width: auto;
     image-rendering: pixelated;
-    cursor: pointer;
-    filter: drop-shadow(0 0 6px rgba(232,26,26,.5));
-    transition: transform 0.15s, filter 0.15s;
     display: block;
-  }
-
-  .nav-key:hover {
-    transform: rotate(-15deg) scale(1.12);
-    filter: drop-shadow(0 0 12px rgba(232,26,26,.8));
   }
 
   /* ============ HERO ============ */
@@ -326,7 +315,49 @@
   }
 
   .hero-sub { font-size: 13px; color: var(--text-dim); letter-spacing: 3px; margin-bottom: 48px; animation: fadeUp 1s 0.4s ease both; max-width: 480px; line-height: 2; }
-  .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; animation: fadeUp 1s 0.6s ease both; }
+  .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; align-items: center; animation: fadeUp 1s 0.6s ease both; }
+  .hero-img-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 30px;
+    margin: -30px;
+    will-change: transform, filter;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    filter: drop-shadow(0 0 8px rgba(232,26,26,.3)) drop-shadow(0 0 16px rgba(232,26,26,.1));
+  }
+  .hero-img-btn:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 12px rgba(232,26,26,.7)) drop-shadow(0 0 24px rgba(232,26,26,.4)) drop-shadow(0 0 40px rgba(232,26,26,.2));
+  }
+  .hero-img-btn:active {
+    transform: scale(0.95) translate(2px, 2px);
+    transition: transform 0.1s;
+  }
+  .hero-img-btn img {
+    width: 320px;
+    height: 150px;
+    image-rendering: pixelated;
+    display: block;
+  }
+  .hero-img-btn span {
+    position: absolute;
+    color: var(--orange-glow);
+    font-family: 'Minecraft', monospace;
+    font-size: 20px;
+    text-shadow: 0 0 12px var(--orange-glow), 0 0 24px var(--orange), 2px 2px 0 #3a0000;
+    pointer-events: none;
+    letter-spacing: 4px;
+    white-space: nowrap;
+    margin-top: 52px;
+    transition: color 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), text-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .hero-img-btn:hover span {
+    color: #fff;
+    text-shadow: 0 0 16px #fff, 0 0 32px var(--orange-glow), 0 0 48px var(--orange), 2px 2px 0 #3a0000;
+  }
 
   @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -472,7 +503,7 @@
   .cart-drawer { position: fixed; top: 0; right: -360px; width: 340px; height: 100vh; background: rgba(7,13,26,0.97); border-left: 2px solid var(--orange-dim); z-index: 200; transition: right 0.3s; padding: 24px; display: flex; flex-direction: column; }
   .cart-drawer.open { right: 0; box-shadow: -8px 0 32px rgba(0,0,0,0.8); }
   .cart-title { font-size: 14px; color: var(--orange); letter-spacing: 4px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid var(--blue-light); display: flex; justify-content: space-between; align-items: center; }
-  .cart-close { background: none; border: none; color: var(--orange-dim); font-family: "Minecraft", monospace; font-size: 14px; cursor: pointer; }
+  .cart-close { background: none; border: none; color: var(--orange-dim); font-family: "Minecraft", monospace; font-size: 20px; cursor: pointer; }
   .cart-close:hover { color: var(--orange); }
   .cart-empty { flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px; color: var(--text-dim); font-size: 12px; letter-spacing: 2px; line-height: 2.5; text-align: center; }
 
@@ -488,7 +519,7 @@
   .auth-overlay.open { display: flex; }
   .auth-modal { background: var(--blue-mid); border: 2px solid var(--orange-dim); padding: 40px; width: min(420px, 90vw); position: relative; box-shadow: 6px 6px 0 #3a0000; }
   .auth-modal::before { content: ''; position: absolute; bottom: -6px; right: -6px; width: 100%; height: 100%; background: var(--orange-dim); opacity: 0.15; z-index: -1; }
-  .auth-close { position: absolute; top: 12px; right: 14px; background: none; border: none; color: var(--orange-dim); font-family: "Minecraft", monospace; font-size: 14px; cursor: pointer; }
+  .auth-close { position: absolute; top: 12px; right: 14px; background: none; border: none; color: var(--orange-dim); font-family: "Minecraft", monospace; font-size: 20px; cursor: pointer; }
   .auth-close:hover { color: var(--orange); }
   .auth-tabs { display: flex; gap: 0; margin-bottom: 32px; border-bottom: 2px solid var(--blue-light); }
   .auth-tab { font-family: "Minecraft", monospace; font-size: 13px; letter-spacing: 2px; padding: 10px 20px; background: none; border: none; color: var(--text-dim); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.15s; }
@@ -575,9 +606,13 @@
 
   <!-- RIGHT: Key (bigger), Lookbook (bigger), Cart -->
   <div style="display:flex;align-items:center;gap:16px;">
-    <img src="./assets/key.png" alt="Sign In" class="nav-key" onclick="toggleAuth()">
-    <img src="./assets/lookbook.png" alt="Lookbook" class="nav-lookbook-icon" onclick="navigate('lookbook')">
-    <div class="nav-chest" onclick="toggleCart()">
+    <div class="nav-icon-wrapper nav-key-wrapper" onclick="toggleAuth()">
+      <img src="./assets/key.png" alt="Sign In" class="nav-key">
+    </div>
+    <div class="nav-icon-wrapper" onclick="navigate('lookbook')">
+      <img src="./assets/lookbook.png" alt="Lookbook" class="nav-lookbook-icon">
+    </div>
+    <div class="nav-icon-wrapper" onclick="toggleCart()">
       <img src="./assets/chest.png" alt="Cart" class="nav-chest-img">
       <span class="nav-chest-count" id="navCartCount">0</span>
     </div>
@@ -595,8 +630,14 @@
       <div class="hero-logo-wrap"><img src="./assets/logo.png" alt="ACID" class="hero-logo"></div>
       <p class="hero-sub">WEAR THE NIGHT.<br>DRESS LIKE A LEGEND.</p>
       <div class="hero-buttons">
-        <a href="#" class="px-btn px-btn-primary" onclick="navigate('shop')">ENTER SHOP</a>
-        <a href="#" class="px-btn px-btn-secondary" onclick="navigate('collections')">COLLECTIONS</a>
+        <div class="hero-img-btn" onclick="navigate('shop')">
+          <img src="./assets/button.png" alt="Enter Shop">
+          <span>ENTER SHOP</span>
+        </div>
+        <div class="hero-img-btn" onclick="navigate('collections')">
+          <img src="./assets/button-2.png" alt="Collections">
+          <span>COLLECTIONS</span>
+        </div>
       </div>
       <div class="scroll-hint">▼ SCROLL ▼</div>
     </div>
@@ -818,6 +859,11 @@ function renderProducts(container, items) {
       <div class="product-info">
         <p class="product-name">${p.name}</p>
         <p class="product-price">$${p.price}</p>
+        <select id="size-${p.id}" style="background:var(--blue-deep);color:var(--text);border:1px solid var(--orange-dim);font-family:'Minecraft', monospace;font-size:10px;padding:4px;margin-bottom:12px;width:100%;outline:none;cursor:pointer;">
+          <option value="S">SIZE: S</option>
+          <option value="M" selected>SIZE: M</option>
+          <option value="L">SIZE: L</option>
+        </select>
         <button class="product-add" onclick="addToCart(${p.id})">+ ADD TO CART</button>
       </div>
     </div>
@@ -849,10 +895,12 @@ document.getElementById('lookbookGrid').innerHTML = lookbookColors.map((col, i) 
 let cart = [], cartOpen = false;
 
 function addToCart(id) {
+  const sizeEl = document.getElementById('size-' + id);
+  const size = sizeEl ? sizeEl.value : 'M';
   const p = products.find(x => x.id === id);
-  const existing = cart.find(x => x.id === id);
+  const existing = cart.find(x => x.id === id && x.size === size);
   if (existing) existing.qty++;
-  else cart.push({...p, qty:1});
+  else cart.push({...p, size: size, qty:1});
   updateCart();
   showNotif('ADDED TO CART');
 }
@@ -870,24 +918,24 @@ function updateCart() {
     empty.style.display = 'flex'; items.style.display = 'none'; footer.style.display = 'none';
   } else {
     empty.style.display = 'none'; items.style.display = 'block'; footer.style.display = 'block';
-    items.innerHTML = cart.map(x => `
+    items.innerHTML = cart.map((x, i) => `
       <div style="display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--blue-light);">
-        <div style="flex:1;font-size:11px;color:var(--text);letter-spacing:1px;line-height:2;">${x.name}<br><span style="color:var(--orange);">$${x.price}</span></div>
+        <div style="flex:1;font-size:11px;color:var(--text);letter-spacing:1px;line-height:2;">${x.name} <span style="color:var(--orange-dim);">[${x.size}]</span><br><span style="color:var(--orange);">$${x.price}</span></div>
         <div style="display:flex;align-items:center;gap:8px;">
-          <button onclick="changeQty(${x.id},-1)" style="background:none;border:1px solid var(--orange-dim);color:var(--orange);font-family:'Minecraft';font-size:12px;width:26px;height:26px;cursor:pointer;">-</button>
+          <button onclick="changeQty(${i},-1)" style="background:none;border:1px solid var(--orange-dim);color:var(--orange);font-family:'Minecraft';font-size:12px;width:26px;height:26px;cursor:pointer;">-</button>
           <span style="font-size:12px;color:var(--text);">${x.qty}</span>
-          <button onclick="changeQty(${x.id},1)" style="background:none;border:1px solid var(--orange-dim);color:var(--orange);font-family:'Minecraft';font-size:12px;width:26px;height:26px;cursor:pointer;">+</button>
+          <button onclick="changeQty(${i},1)" style="background:none;border:1px solid var(--orange-dim);color:var(--orange);font-family:'Minecraft';font-size:12px;width:26px;height:26px;cursor:pointer;">+</button>
         </div>
       </div>
     `).join('');
   }
 }
 
-function changeQty(id, delta) {
-  const item = cart.find(x => x.id === id);
+function changeQty(index, delta) {
+  const item = cart[index];
   if (!item) return;
   item.qty += delta;
-  if (item.qty <= 0) cart = cart.filter(x => x.id !== id);
+  if (item.qty <= 0) cart.splice(index, 1);
   updateCart();
 }
 
